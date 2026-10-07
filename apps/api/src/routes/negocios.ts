@@ -1,7 +1,10 @@
 import { Router } from 'express';
 import { z } from 'zod';
+import { eq, and, desc } from 'drizzle-orm';
 import { asyncHandler, AppError } from '../middleware/errorHandler';
 import { requireAuth, requireOwner } from '../middleware/auth';
+import { db } from '@boilerplate/db';
+import { negocios, usuarios } from '@boilerplate/db/schema';
 
 const router = Router();
 
@@ -50,25 +53,68 @@ const createNegocioSchema = z.object({
   }),
 });
 
+const updateNegocioSchema = createNegocioSchema.partial();
+
 router.get('/', asyncHandler(async (req, res) => {
-  res.json({ message: 'Listar negocios - TODO: implementar con Drizzle', data: [] });
+  const data = await db.select()
+    .from(negocios)
+    .where(eq(negocios.activo, true))
+    .orderBy(desc(negocios.createdAt));
+  res.json({ data });
 }));
 
 router.get('/:id', asyncHandler(async (req, res) => {
-  res.json({ message: `Obtener negocio ${req.params.id} - TODO` });
+  const [negocio] = await db.select()
+    .from(negocios)
+    .where(eq(negocios.id, req.params.id));
+  if (!negocio) throw new AppError(404, 'Negocio no encontrado');
+  res.json({ data: negocio });
+}));
+
+router.get('/slug/:slug', asyncHandler(async (req, res) => {
+  const [negocio] = await db.select()
+    .from(negocios)
+    .where(and(eq(negocios.slug, req.params.slug), eq(negocios.activo, true)));
+  if (!negocio) throw new AppError(404, 'Negocio no encontrado');
+  res.json({ data: negocio });
 }));
 
 router.post('/', requireAuth, requireOwner, asyncHandler(async (req, res) => {
   const data = createNegocioSchema.parse(req.body);
-  res.status(201).json({ message: 'Crear negocio - TODO: implementar con Drizzle', data });
+
+  const [existing] = await db.select().from(negocios).where(eq(negocios.slug, data.slug));
+  if (existing) throw new AppError(409, 'Slug ya existe');
+
+  const [negocio] = await db.insert(negocios).values(data).returning();
+
+  const ownerData = {
+    email: req.user!.email,
+    nombre: req.user!.nombre,
+    rol: 'owner' as const,
+    negocioId: negocio.id,
+  };
+  await db.insert(usuarios).values(ownerData);
+
+  res.status(201).json({ data: negocio });
 }));
 
 router.patch('/:id', requireAuth, requireOwner, asyncHandler(async (req, res) => {
-  res.json({ message: `Actualizar negocio ${req.params.id} - TODO` });
+  const data = updateNegocioSchema.parse(req.body);
+  const [negocio] = await db.update(negocios)
+    .set({ ...data, updatedAt: new Date() })
+    .where(eq(negocios.id, req.params.id))
+    .returning();
+  if (!negocio) throw new AppError(404, 'Negocio no encontrado');
+  res.json({ data: negocio });
 }));
 
 router.delete('/:id', requireAuth, requireOwner, asyncHandler(async (req, res) => {
-  res.json({ message: `Eliminar negocio ${req.params.id} - TODO` });
+  const [negocio] = await db.update(negocios)
+    .set({ activo: false, updatedAt: new Date() })
+    .where(eq(negocios.id, req.params.id))
+    .returning();
+  if (!negocio) throw new AppError(404, 'Negocio no encontrado');
+  res.json({ message: 'Negocio desactivado' });
 }));
 
 export { router as negociosRouter };
