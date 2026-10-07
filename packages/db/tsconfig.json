@@ -3,8 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "."
   },
-  "include": ["src/**/*", "drizzle.config.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "drizzle.config.ts"]
 }

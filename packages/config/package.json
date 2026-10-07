@@ -11,7 +11,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@boilerplate/tsconfig": "*",
+    "@boilerplate/tsconfig": "workspace:*",
     "typescript": "^5.4.0"
   }
 }

@@ -5,7 +5,7 @@ export default defineConfig({
   out: './migrations',
   dialect: 'postgresql',
   dbCredentials: {
-    url: process.env.DATABASE_URL || 'postgresql://user:pass@localhost:5432/boilerplate',
+    connectionString: process.env.DATABASE_URL || 'postgresql://user:pass@localhost:5432/boilerplate',
   },
   verbose: true,
   strict: true,

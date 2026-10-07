@@ -7,6 +7,7 @@ import { rateLimit } from 'express-rate-limit';
 import { authRouter } from './routes/auth';
 import { negociosRouter } from './routes/negocios';
 import { itemsRouter } from './routes/items';
+import { categoriasRouter } from './routes/categorias';
 import { reservasRouter } from './routes/reservas';
 import { clientesRouter } from './routes/clientes';
 import { whatsappRouter } from './routes/whatsapp';
@@ -43,6 +44,7 @@ app.get('/health', (_req, res) => {
 app.use('/api/auth', authRouter);
 app.use('/api/negocios', negociosRouter);
 app.use('/api/items', itemsRouter);
+app.use('/api/categorias', categoriasRouter);
 app.use('/api/reservas', reservasRouter);
 app.use('/api/clientes', clientesRouter);
 app.use('/api/whatsapp', whatsappRouter);
