@@ -32,6 +32,8 @@
     "axios": "^1.6.0",
     "rate-limiter-flexible": "^5.0.0",
     "dotenv": "^16.3.1",
+    "stripe": "^14.14.0",
+    "mercadopago": "^2.0.0",
     "@boilerplate/db": "*",
     "@boilerplate/config": "*",
     "@boilerplate/utils": "*"
