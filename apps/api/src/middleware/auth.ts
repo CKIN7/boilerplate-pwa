@@ -1,25 +1,49 @@
 import { Request, Response, NextFunction } from 'express';
 import { AppError } from './errorHandler';
-import { verifyToken, TokenPayload } from '../utils/auth';
+import { auth } from '../lib/auth';
 
 export interface AuthenticatedRequest extends Request {
-  user?: TokenPayload;
+  user?: {
+    id: string;
+    email: string;
+    nombre: string | null;
+    rol: string;
+    negocioId: string;
+  };
+  session?: {
+    id: string;
+    expiresAt: Date;
+  };
   negocioId?: string;
 }
 
-export function requireAuth(req: AuthenticatedRequest, _res: Response, next: NextFunction) {
+export async function requireAuth(req: AuthenticatedRequest, _res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
   if (!authHeader?.startsWith('Bearer ')) {
     throw new AppError(401, 'Token no proporcionado');
   }
 
   const token = authHeader.split(' ')[1];
-  try {
-    req.user = verifyToken(token);
-    next();
-  } catch {
-    throw new AppError(401, 'Token inválido o expirado');
+  const session = await auth.api.getSession({
+    headers: { authorization: `Bearer ${token}` },
+  });
+
+  if (!session) {
+    throw new AppError(401, 'Sesión inválida o expirada');
   }
+
+  req.user = {
+    id: session.user.id,
+    email: session.user.email,
+    nombre: session.user.name,
+    rol: (session.user as any).rol || 'staff',
+    negocioId: (session.user as any).negocioId || '',
+  };
+  req.session = {
+    id: session.session.id,
+    expiresAt: session.session.expiresAt,
+  };
+  next();
 }
 
 export function requireTenant(req: AuthenticatedRequest, _res: Response, next: NextFunction) {
