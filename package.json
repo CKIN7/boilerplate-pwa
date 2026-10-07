@@ -14,7 +14,10 @@
     "prepare": "husky install",
     "db:generate": "turbo run db:generate",
     "db:push": "turbo run db:push",
-    "db:studio": "turbo run db:studio"
+    "db:studio": "turbo run db:studio",
+    "test": "turbo run test",
+    "test:unit": "turbo run test:unit",
+    "test:e2e": "turbo run test:e2e"
   },
   "devDependencies": {
     "@turbo/repository": "^1.13.0",
