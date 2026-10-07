@@ -12,6 +12,7 @@ import { reservasRouter } from './routes/reservas';
 import { clientesRouter } from './routes/clientes';
 import { whatsappRouter } from './routes/whatsapp';
 import { webhooksRouter } from './routes/webhooks';
+import { adminRouter } from './routes/admin';
 import { errorHandler } from './middleware/errorHandler';
 import { tenantMiddleware } from './middleware/tenant';
 
@@ -49,6 +50,7 @@ app.use('/api/reservas', reservasRouter);
 app.use('/api/clientes', clientesRouter);
 app.use('/api/whatsapp', whatsappRouter);
 app.use('/api/webhooks', webhooksRouter);
+app.use('/api/admin', adminRouter);
 
 app.use(errorHandler);
 
