@@ -1,10 +1,11 @@
 import { pgTable, uuid, varchar, text, timestamp } from 'drizzle-orm/pg-core';
 import { usuarios } from './usuarios';
+import { negocios } from './negocios';
 
 export const pushSubscriptions = pgTable('push_subscriptions', {
   id: uuid('id').primaryKey().defaultRandom(),
   userId: uuid('user_id').references(() => usuarios.id, { onDelete: 'cascade' }).notNull(),
-  negocioId: uuid('negocio_id').references(() => import('./negocios').then(m => m.negocios.id), { onDelete: 'cascade' }).notNull(),
+  negocioId: uuid('negocio_id').references(() => negocios.id, { onDelete: 'cascade' }).notNull(),
   endpoint: varchar('endpoint', { length: 500 }).notNull().unique(),
   p256dh: varchar('p256dh', { length: 200 }).notNull(),
   auth: varchar('auth', { length: 100 }).notNull(),
