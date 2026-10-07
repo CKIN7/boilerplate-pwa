@@ -1,0 +1,85 @@
+{
+  "landing": {
+    "demo": "Demo",
+    "features": "Features",
+    "stack": "Stack",
+    "hero": {
+      "title": "One codebase. Multiple businesses.",
+      "subtitle": "Multi-rubro PWA boilerplate: configuration, not rewriting. Launch apps for restaurants, clinics, barbershops, gyms and stores in days, not months.",
+      "cta": "View Interactive Demo",
+      "learnMore": "View Features"
+    },
+    "demo": {
+      "title": "Try the Demo by Business Type",
+      "subtitle": "Select a business type and watch the theme, texts and modules change automatically. Same codebase, different experience.",
+      "viewDemo": "View demo"
+    },
+    "features": {
+      "title": "Everything you need",
+      "subtitle": "Production-ready base features, configurable via JSON per client.",
+      "theming": {
+        "title": "Theme System",
+        "desc": "Colors, fonts, logo and branding per client via JSON. Instant change without rebuild."
+      },
+      "pwa": {
+        "title": "Full PWA",
+        "desc": "Service Worker, manifest, offline mode, installable on home screen, push notifications."
+      },
+      "i18n": {
+        "title": "Multi-language",
+        "desc": "/es /en routing with next-intl. Messages in JSON. Ready for LATAM + US."
+      },
+      "performance": {
+        "title": "Performance",
+        "desc": "SSR/ISR with Next.js 14, image optimization, code splitting, edge caching."
+      },
+      "auth": {
+        "title": "Robust Auth",
+        "desc": "Better Auth with JWT, roles (owner/staff/client), refresh tokens, optional 2FA."
+      },
+      "analytics": {
+        "title": "Analytics",
+        "desc": "Plausible/Umami integrated. Custom events per activable module."
+      }
+    },
+    "stack": {
+      "title": "Tech Stack",
+      "subtitle": "Proven, typed and maintainable technologies. Chosen for development speed and scalability."
+    },
+    "footer": {
+      "description": "Multi-Rubro PWA Boilerplate — Built for developers who sell speed.",
+      "copyright": "2024 Boilerplate PWA. Open source under MIT license."
+    }
+  },
+  "business": {
+    "nav": {
+      "menu": "Menu",
+      "book": "Book"
+    },
+    "hero": {
+      "new": "New",
+      "viewMenu": "View Menu"
+    },
+    "sections": {
+      "menu": "Our Menu",
+      "menuDesc": "Discover our dishes and services",
+      "viewAll": "View all",
+      "ctaTitle": "Ready to book?",
+      "ctaDesc": "Book your table, appointment or class in seconds. Available 24/7.",
+      "whatsappTitle": "Direct Contact",
+      "whatsappDesc": "Have questions? Write to us on WhatsApp and we'll answer instantly.",
+      "whatsappCTA": "Write on WhatsApp"
+    },
+    "sample": {
+      "item1": "Main Course",
+      "item1Desc": "Our house specialty",
+      "item2": "Appetizer",
+      "item2Desc": "Perfect for sharing",
+      "item3": "Dessert",
+      "item3Desc": "The sweet final touch"
+    },
+    "footer": {
+      "rights": "All rights reserved."
+    }
+  }
+}

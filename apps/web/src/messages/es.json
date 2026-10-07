@@ -1,0 +1,85 @@
+{
+  "landing": {
+    "demo": "Demo",
+    "features": "Características",
+    "stack": "Stack",
+    "hero": {
+      "title": "Una base de código. Múltiples negocios.",
+      "subtitle": "Boilerplate PWA multi-rubro: configuración, no reescritura. Lanza apps para restaurantes, clínicas, barberías, gimnasios y tiendas en días, no meses.",
+      "cta": "Ver Demo Interactiva",
+      "learnMore": "Ver Características"
+    },
+    "demo": {
+      "title": "Prueba la Demo por Rubro",
+      "subtitle": "Selecciona un tipo de negocio y ve cómo cambia el tema, los textos y los módulos automáticamente. Misma base de código, distinta experiencia.",
+      "viewDemo": "Ver demo"
+    },
+    "features": {
+      "title": "Todo lo que necesitas",
+      "subtitle": "Funcionalidades base listas para producción, configurables por JSON por cliente.",
+      "theming": {
+        "title": "Sistema de Temas",
+        "desc": "Colores, fuentes, logo y branding por cliente vía JSON. Cambio instantáneo sin rebuild."
+      },
+      "pwa": {
+        "title": "PWA Completa",
+        "desc": "Service Worker, manifest, modo offline, instalable en pantalla de inicio, notificaciones push."
+      },
+      "i18n": {
+        "title": "Multi-idioma",
+        "desc": "Routing /es /en con next-intl. Mensajes en JSON. Listo para LATAM + US."
+      },
+      "performance": {
+        "title": "Rendimiento",
+        "desc": "SSR/ISR con Next.js 14, optimización de imágenes, code splitting, edge caching."
+      },
+      "auth": {
+        "title": "Auth Robusta",
+        "desc": "Better Auth con JWT, roles (owner/staff/cliente), refresh tokens, 2FA opcional."
+      },
+      "analytics": {
+        "title": "Analytics",
+        "desc": "Plausible/Umami integrado. Eventos personalizados por módulo activable."
+      }
+    },
+    "stack": {
+      "title": "Stack Tecnológico",
+      "subtitle": "Tecnologías probadas, tipadas y mantenibles. Elegidas para velocidad de desarrollo y escalabilidad."
+    },
+    "footer": {
+      "description": "Boilerplate PWA Multi-Rubro — Construido para desarrolladores que venden velocidad.",
+      "copyright": "2024 Boilerplate PWA. Código abierto bajo licencia MIT."
+    }
+  },
+  "business": {
+    "nav": {
+      "menu": "Menú",
+      "book": "Reservar"
+    },
+    "hero": {
+      "new": "Nuevo",
+      "viewMenu": "Ver Menú"
+    },
+    "sections": {
+      "menu": "Nuestro Menú",
+      "menuDesc": "Descubre nuestros platos y servicios",
+      "viewAll": "Ver todo",
+      "ctaTitle": "¿Listo para reservar?",
+      "ctaDesc": "Reserva tu mesa, cita o clase en segundos. Disponible 24/7.",
+      "whatsappTitle": "Contacto Directo",
+      "whatsappDesc": "¿Tienes dudas? Escríbenos por WhatsApp y te respondemos al instante.",
+      "whatsappCTA": "Escribir por WhatsApp"
+    },
+    "sample": {
+      "item1": "Plato Principal",
+      "item1Desc": "Nuestra especialidad de la casa",
+      "item2": "Entrada",
+      "item2Desc": "Perfecta para compartir",
+      "item3": "Postre",
+      "item3Desc": "El toque dulce final"
+    },
+    "footer": {
+      "rights": "Todos los derechos reservados."
+    }
+  }
+}

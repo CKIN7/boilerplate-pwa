@@ -1,0 +1,18 @@
+{
+  "extends": "@boilerplate/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@boilerplate/ui": ["packages/ui/src"],
+      "@boilerplate/config": ["packages/config/src"],
+      "@boilerplate/db": ["packages/db/src"],
+      "@boilerplate/utils": ["packages/utils/src"]
+    }
+  },
+  "references": [
+    { "path": "./packages/tsconfig" },
+    { "path": "./packages/eslint-config" },
+    { "path": "./apps/web" },
+    { "path": "./apps/api" }
+  ]
+}

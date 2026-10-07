@@ -1,0 +1,39 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Build outputs
+dist
+build
+.next
+out
+*.tsbuildinfo
+
+# Turbo
+.turbo
+
+# IDE
+.idea
+.vscode
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Testing
+coverage
+.nyc_output
+
+# Database
+drizzle/*.sql
+
+# Misc
+*.pem
+.vercel
+.netlify
+turbo.json
+pnpm-lock.yaml
