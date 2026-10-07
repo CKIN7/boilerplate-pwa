@@ -1,48 +1,6 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-
-const businesses = [
-  {
-    slug: 'restaurante-el-sabor',
-    rubro: 'restaurante',
-    name: 'Restaurante El Sabor',
-    description: 'Comida casera y ambiente familiar',
-    icon: '🍽️',
-    color: 'bg-amber-500',
-  },
-  {
-    slug: 'clinica-dental-sonrisa',
-    rubro: 'clinica',
-    name: 'Clínica Dental Sonrisa',
-    description: 'Odontología integral y estética',
-    icon: '🦷',
-    color: 'bg-sky-500',
-  },
-  {
-    slug: 'barberia-clasica',
-    rubro: 'barberia',
-    name: 'Barbería Clásica',
-    description: 'Cortes tradicionales y arreglo de barba',
-    icon: '✂️',
-    color: 'bg-stone-600',
-  },
-  {
-    slug: 'gym-fitlife',
-    rubro: 'gimnasio',
-    name: 'Gym FitLife',
-    description: 'Entrenamiento personalizado y clases',
-    icon: '💪',
-    color: 'bg-rose-500',
-  },
-  {
-    slug: 'tienda-moda-urbana',
-    rubro: 'tienda',
-    name: 'Tienda Moda Urbana',
-    description: 'Ropa y accesorios tendencia',
-    icon: '🛍️',
-    color: 'bg-violet-500',
-  },
-];
+import { DemoSelector } from '@/components/DemoSelector';
 
 export default function HomePage({ params }: { params: { locale: string } }) {
   const t = useTranslations('landing');
@@ -96,47 +54,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         </div>
       </section>
 
-      <section id="demo" className="py-20 lg:py-32 bg-white dark:bg-gray-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              {t('demo.title')}
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              {t('demo.subtitle')}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {businesses.map((business) => (
-              <Link
-                key={business.slug}
-                href={`/${params.locale}/${business.slug}`}
-                className="group relative bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-xl hover:shadow-primary-500/10 transition-all duration-300 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative z-10">
-                  <div className={`w-14 h-14 rounded-xl ${business.color} flex items-center justify-center text-2xl mb-4`}>
-                    {business.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                    {business.name}
-                  </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                    {business.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-sm text-primary-600 dark:text-primary-400 font-medium group-hover:gap-3 transition-all">
-                    <span>{t('demo.viewDemo')}</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <DemoSelector locale={params.locale} />
 
       <section id="features" className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

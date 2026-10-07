@@ -12,7 +12,9 @@
     "demo": {
       "title": "Try the Demo by Business Type",
       "subtitle": "Select a business type and watch the theme, texts and modules change automatically. Same codebase, different experience.",
-      "viewDemo": "View demo"
+      "viewDemo": "View demo",
+      "selectBusiness": "Select a business",
+      "activeModules": "Active modules"
     },
     "features": {
       "title": "Everything you need",

@@ -12,7 +12,9 @@
     "demo": {
       "title": "Prueba la Demo por Rubro",
       "subtitle": "Selecciona un tipo de negocio y ve cómo cambia el tema, los textos y los módulos automáticamente. Misma base de código, distinta experiencia.",
-      "viewDemo": "Ver demo"
+      "viewDemo": "Ver demo",
+      "selectBusiness": "Selecciona un negocio",
+      "activeModules": "Módulos activos"
     },
     "features": {
       "title": "Todo lo que necesitas",
