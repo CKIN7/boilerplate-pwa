@@ -81,5 +81,83 @@
     "footer": {
       "rights": "All rights reserved."
     }
+  },
+  "booking": {
+    "notAvailable": "Booking not available",
+    "notAvailableDesc": "This business doesn't have the booking module enabled.",
+    "subtitle": "Select service, date and time. We'll confirm via WhatsApp.",
+    "serviceLabel": "Service",
+    "selectService": "Select a service",
+    "service1": "Haircut",
+    "service2": "Beard trim",
+    "service3": "Haircut + beard",
+    "dateLabel": "Date",
+    "timeLabel": "Time",
+    "selectTime": "Select a time",
+    "nameLabel": "Full name",
+    "namePlaceholder": "Your name",
+    "phoneLabel": "Phone",
+    "phonePlaceholder": "+1 (XXX) XXX-XXXX",
+    "emailLabel": "Email (optional)",
+    "emailPlaceholder": "you@email.com",
+    "notesLabel": "Notes (optional)",
+    "notesPlaceholder": "Any special details...",
+    "submitBtn": "Confirm booking",
+    "confirmationNote": "You'll receive a WhatsApp confirmation with your booking details.",
+    "footerRights": "All rights reserved."
+  },
+  "account": {
+    "title": "My account",
+    "subtitle": "Welcome, {nombre}. Manage your profile and bookings.",
+    "editProfile": "Edit profile",
+    "myBookings": "My bookings",
+    "newBooking": "New booking",
+    "status": {
+      "confirmada": "Confirmed",
+      "completada": "Completed",
+      "cancelada": "Cancelled",
+      "pendiente": "Pending"
+    },
+    "loyaltyPoints": "Loyalty points",
+    "points": "points",
+    "nextReward": "You need {points} more points for your next reward",
+    "footerRights": "All rights reserved."
+  },
+  "admin": {
+    "adminBadge": "Admin",
+    "dashboardTitle": "Admin Dashboard",
+    "dashboardSubtitle": "Manage {nombre} from one place",
+    "stats": {
+      "bookingsToday": "Bookings today",
+      "totalBookings": "Total bookings",
+      "totalClients": "Total clients",
+      "revenue": "Revenue"
+    },
+    "recentBookings": "Recent bookings",
+    "viewAll": "View all",
+    "table": {
+      "client": "Client",
+      "service": "Service",
+      "dateTime": "Date & time",
+      "status": "Status"
+    },
+    "quickActions": "Quick actions",
+    "actions": {
+      "newBooking": "New booking",
+      "newBookingDesc": "Create manual booking",
+      "manageItems": "Manage items",
+      "manageItemsDesc": "Products & services",
+      "manageClients": "Manage clients",
+      "manageClientsDesc": "View & edit clients",
+      "settings": "Settings",
+      "settingsDesc": "Business settings"
+    },
+    "status": {
+      "confirmada": "Confirmed",
+      "completada": "Completed",
+      "cancelada": "Cancelled",
+      "pendiente": "Pending"
+    },
+    "footerRights": "All rights reserved."
   }
 }

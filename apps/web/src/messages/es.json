@@ -81,5 +81,83 @@
     "footer": {
       "rights": "Todos los derechos reservados."
     }
+  },
+  "booking": {
+    "notAvailable": "Reservas no disponibles",
+    "notAvailableDesc": "Este negocio no tiene el módulo de reservas activado.",
+    "subtitle": "Selecciona el servicio, fecha y hora. Te confirmaremos por WhatsApp.",
+    "serviceLabel": "Servicio",
+    "selectService": "Selecciona un servicio",
+    "service1": "Corte de cabello",
+    "service2": "Arreglo de barba",
+    "service3": "Corte + barba",
+    "dateLabel": "Fecha",
+    "timeLabel": "Hora",
+    "selectTime": "Selecciona una hora",
+    "nameLabel": "Nombre completo",
+    "namePlaceholder": "Tu nombre",
+    "phoneLabel": "Teléfono",
+    "phonePlaceholder": "+58 4XX XXXXXXX",
+    "emailLabel": "Email (opcional)",
+    "emailPlaceholder": "tu@email.com",
+    "notesLabel": "Notas (opcional)",
+    "notesPlaceholder": "Algún detalle especial...",
+    "submitBtn": "Confirmar reserva",
+    "confirmationNote": "Recibirás una confirmación por WhatsApp con los detalles de tu reserva.",
+    "footerRights": "Todos los derechos reservados."
+  },
+  "account": {
+    "title": "Mi cuenta",
+    "subtitle": "Bienvenido, {nombre}. Gestiona tu perfil y reservas.",
+    "editProfile": "Editar perfil",
+    "myBookings": "Mis reservas",
+    "newBooking": "Nueva reserva",
+    "status": {
+      "confirmada": "Confirmada",
+      "completada": "Completada",
+      "cancelada": "Cancelada",
+      "pendiente": "Pendiente"
+    },
+    "loyaltyPoints": "Puntos de fidelidad",
+    "points": "puntos",
+    "nextReward": "Te faltan {points} puntos para tu próxima recompensa",
+    "footerRights": "Todos los derechos reservados."
+  },
+  "admin": {
+    "adminBadge": "Admin",
+    "dashboardTitle": "Panel de administración",
+    "dashboardSubtitle": "Gestiona {nombre} desde un solo lugar",
+    "stats": {
+      "bookingsToday": "Reservas hoy",
+      "totalBookings": "Total reservas",
+      "totalClients": "Total clientes",
+      "revenue": "Ingresos"
+    },
+    "recentBookings": "Reservas recientes",
+    "viewAll": "Ver todas",
+    "table": {
+      "client": "Cliente",
+      "service": "Servicio",
+      "dateTime": "Fecha y hora",
+      "status": "Estado"
+    },
+    "quickActions": "Acciones rápidas",
+    "actions": {
+      "newBooking": "Nueva reserva",
+      "newBookingDesc": "Crear reserva manual",
+      "manageItems": "Gestionar items",
+      "manageItemsDesc": "Productos y servicios",
+      "manageClients": "Gestionar clientes",
+      "manageClientsDesc": "Ver y editar clientes",
+      "settings": "Configuración",
+      "settingsDesc": "Ajustes del negocio"
+    },
+    "status": {
+      "confirmada": "Confirmada",
+      "completada": "Completada",
+      "cancelada": "Cancelada",
+      "pendiente": "Pendiente"
+    },
+    "footerRights": "Todos los derechos reservados."
   }
 }
