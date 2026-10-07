@@ -23,7 +23,6 @@
     "drizzle-orm": "^0.29.0",
     "postgres": "^3.4.3",
     "better-auth": "^0.1.0",
-    "@better-auth/zod": "^0.1.0",
     "jsonwebtoken": "^9.0.2",
     "bcryptjs": "^2.4.3",
     "nodemailer": "^6.9.10",
@@ -34,13 +33,13 @@
     "dotenv": "^16.3.1",
     "stripe": "^14.14.0",
     "mercadopago": "^2.0.0",
-    "@boilerplate/db": "*",
-    "@boilerplate/config": "*",
-    "@boilerplate/utils": "*"
+    "@boilerplate/db": "workspace:*",
+    "@boilerplate/config": "workspace:*",
+    "@boilerplate/utils": "workspace:*"
   },
   "devDependencies": {
-    "@boilerplate/eslint-config": "*",
-    "@boilerplate/tsconfig": "*",
+    "@boilerplate/eslint-config": "workspace:*",
+    "@boilerplate/tsconfig": "workspace:*",
     "@types/node": "^20.11.0",
     "@types/express": "^4.17.21",
     "@types/cors": "^2.8.17",

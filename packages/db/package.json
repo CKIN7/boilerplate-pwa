@@ -8,14 +8,15 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "drizzle-orm": "^0.29.0",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
-    "@boilerplate/tsconfig": "*",
+    "@boilerplate/tsconfig": "workspace:*",
     "drizzle-kit": "^0.20.0",
     "typescript": "^5.4.0"
   }

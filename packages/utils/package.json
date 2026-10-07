@@ -12,7 +12,7 @@
     "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
-    "@boilerplate/tsconfig": "*",
+    "@boilerplate/tsconfig": "workspace:*",
     "typescript": "^5.4.0"
   }
 }

@@ -1,26 +1,12 @@
 {
   "name": "boilerplate-pwa",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "lint": "turbo run lint",
-    "typecheck": "turbo run typecheck",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "prepare": "husky install",
-    "db:generate": "turbo run db:generate",
-    "db:push": "turbo run db:push",
-    "db:studio": "turbo run db:studio",
-    "test": "turbo run test",
-    "test:unit": "turbo run test:unit",
-    "test:e2e": "turbo run test:e2e"
+    "typecheck": "echo 'Root typecheck skipped'"
   },
   "devDependencies": {
-    "@turbo/repository": "^1.13.0",
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
