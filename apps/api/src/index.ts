@@ -14,6 +14,7 @@ import { whatsappRouter } from './routes/whatsapp';
 import { webhooksRouter } from './routes/webhooks';
 import { adminRouter } from './routes/admin';
 import { uploadRouter } from './routes/upload';
+import { pushRouter } from './routes/push';
 import { errorHandler } from './middleware/errorHandler';
 import { tenantMiddleware } from './middleware/tenant';
 
@@ -53,6 +54,7 @@ app.use('/api/whatsapp', whatsappRouter);
 app.use('/api/webhooks', webhooksRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/upload', uploadRouter);
+app.use('/api/push', pushRouter);
 
 app.use(errorHandler);
 

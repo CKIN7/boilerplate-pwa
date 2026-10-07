@@ -6,3 +6,4 @@ export * from './items';
 export * from './reservas';
 export * from './notificaciones';
 export * from './configRubro';
+export * from './pushSubscriptions';
