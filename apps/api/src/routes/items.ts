@@ -4,7 +4,8 @@ import { eq, and, desc } from 'drizzle-orm';
 import { asyncHandler, AppError } from '../middleware/errorHandler';
 import { requireAuth, requireTenant } from '../middleware/auth';
 import { db } from '@boilerplate/db';
-import { items, categorias } from '@boilerplate/db/schema';
+import { items, categorias, negocios } from '@boilerplate/db/schema';
+import { generatePDF, PDFData } from '../utils/pdf';
 
 const router = Router();
 
@@ -36,6 +37,52 @@ router.get('/:id', requireTenant, asyncHandler(async (req, res) => {
     .where(and(eq(items.id, req.params.id), eq(items.negocioId, negocioId)));
   if (!item) throw new AppError(404, 'Item no encontrado');
   res.json({ data: item });
+}));
+
+router.get('/:id/pdf', requireTenant, asyncHandler(async (req, res) => {
+  const negocioId = req.negocioId!;
+  const [item] = await db.select()
+    .from(items)
+    .where(and(eq(items.id, req.params.id), eq(items.negocioId, negocioId)));
+  if (!item) throw new AppError(404, 'Item no encontrado');
+
+  const [negocio] = await db.select()
+    .from(negocios)
+    .where(eq(negocios.id, negocioId));
+  if (!negocio) throw new AppError(404, 'Negocio no encontrado');
+
+  const config = negocio.configJson as any;
+
+  const pdfData: PDFData = {
+    businessName: config.branding?.nombre || negocio.nombre,
+    businessLogo: config.branding?.logo,
+    businessAddress: config.integraciones?.direccion,
+    businessPhone: config.integraciones?.telefono,
+    businessEmail: config.integraciones?.email,
+    documentTitle: 'Detalle de Producto/Servicio',
+    documentNumber: `ITEM-${item.id.slice(0, 8).toUpperCase()}`,
+    date: new Date(),
+    items: [
+      {
+        name: item.nombre,
+        description: item.descripcion,
+        quantity: 1,
+        unitPrice: item.precio,
+        total: item.precio,
+      },
+    ],
+    subtotal: item.precio,
+    tax: 0,
+    total: item.precio,
+    notes: item.descripcion,
+    footerText: `${config.branding?.nombre || negocio.nombre} - Generado automáticamente`,
+  };
+
+  const pdfBuffer = await generatePDF(pdfData);
+
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `inline; filename="item-${item.id}.pdf"`);
+  res.send(pdfBuffer);
 }));
 
 router.post('/', requireAuth, requireTenant, asyncHandler(async (req, res) => {
