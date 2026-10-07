@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import { asyncHandler, AppError } from '../middleware/errorHandler';
-import { requireTenant } from '../middleware/auth';
-import { sendWhatsAppTemplate, getWhatsAppTemplates, createWhatsAppTemplate, verifyWebhookSignature } from '../utils/whatsapp';
+import { requireAuth, requireTenant } from '../middleware/auth';
+import { sendWhatsAppTemplate, getWhatsAppTemplates, createWhatsAppTemplate, verifyWebhookSignature, deleteWhatsAppTemplate } from '../utils/whatsapp';
 
 const router = Router();
 
@@ -11,6 +11,27 @@ const sendMessageSchema = z.object({
   template: z.string(),
   language: z.string().default('es'),
   parameters: z.array(z.string()).optional(),
+});
+
+const createTemplateSchema = z.object({
+  name: z.string().min(3).max(100).regex(/^[a-z0-9_]+$/),
+  language: z.string().default('es'),
+  category: z.enum(['UTILITY', 'MARKETING', 'AUTHENTICATION']),
+  components: z.array(z.object({
+    type: z.enum(['HEADER', 'BODY', 'FOOTER', 'BUTTONS']),
+    format: z.enum(['TEXT', 'IMAGE', 'VIDEO', 'DOCUMENT']).optional(),
+    text: z.string().max(1024).optional(),
+    example: z.object({
+      header_handle: z.array(z.string()).optional(),
+      body_text: z.array(z.array(z.string())).optional(),
+    }).optional(),
+    buttons: z.array(z.object({
+      type: z.enum(['QUICK_REPLY', 'URL', 'PHONE_NUMBER']),
+      text: z.string().max(20).optional(),
+      url: z.string().url().optional(),
+      phone_number: z.string().optional(),
+    })).optional(),
+  })),
 });
 
 router.post('/send', requireTenant, asyncHandler(async (req, res) => {
@@ -26,13 +47,19 @@ router.post('/send', requireTenant, asyncHandler(async (req, res) => {
   res.json({ success: true, data: result });
 }));
 
-router.post('/template', requireTenant, asyncHandler(async (req, res) => {
-  const result = await createWhatsAppTemplate(req.body);
+router.post('/template', requireAuth, requireTenant, asyncHandler(async (req, res) => {
+  const data = createTemplateSchema.parse(req.body);
+  const result = await createWhatsAppTemplate(data);
   res.status(201).json({ success: true, data: result });
 }));
 
 router.get('/templates', requireTenant, asyncHandler(async (req, res) => {
   const result = await getWhatsAppTemplates();
+  res.json({ success: true, data: result });
+}));
+
+router.delete('/template/:name', requireAuth, requireTenant, asyncHandler(async (req, res) => {
+  const result = await deleteWhatsAppTemplate(req.params.name);
   res.json({ success: true, data: result });
 }));
 

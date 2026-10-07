@@ -99,6 +99,26 @@ export async function createWhatsAppTemplate(template: {
   return response.data;
 }
 
+export async function deleteWhatsAppTemplate(name: string) {
+  const { accessToken, phoneNumberId } = config.whatsapp;
+  
+  if (!accessToken || !phoneNumberId) {
+    throw new Error('WhatsApp config incompleta');
+  }
+
+  const response = await axios.delete(
+    `${BASE_URL}/${phoneNumberId}/message_templates`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: { name },
+    }
+  );
+
+  return response.data;
+}
+
 export function verifyWebhookSignature(payload: string, signature: string): boolean {
   const { appSecret } = config.whatsapp;
   if (!appSecret) return false;
