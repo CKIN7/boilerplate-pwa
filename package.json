@@ -2,7 +2,7 @@
   "name": "boilerplate-pwa",
   "private": true,
   "scripts": {
-    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "format": "prettier --w rite \"**/*.{ts,tsx,json,md}\"",
     "prepare": "husky install",
     "typecheck": "echo 'Root typecheck skipped'"
   },
