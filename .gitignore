@@ -50,3 +50,4 @@ drizzle/*.sql
 *.pem
 .vercel
 .netlify
+next-env.d.ts
