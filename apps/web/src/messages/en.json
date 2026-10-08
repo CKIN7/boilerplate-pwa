@@ -1,8 +1,10 @@
 {
   "landing": {
-    "demo": "Demo",
-    "features": "Features",
-    "stack": "Stack",
+    "nav": {
+      "demo": "Demo",
+      "features": "Features",
+      "stack": "Stack"
+    },
     "hero": {
       "title": "One codebase. Multiple businesses.",
       "subtitle": "Multi-rubro PWA boilerplate: configuration, not rewriting. Launch apps for restaurants, clinics, barbershops, gyms and stores in days, not months.",
@@ -82,6 +84,11 @@
     },
     "footer": {
       "rights": "All rights reserved."
+    },
+    "menu": {
+      "addToCart": "Add to cart",
+      "reserve": "Book",
+      "empty": "No products available"
     }
   },
   "booking": {

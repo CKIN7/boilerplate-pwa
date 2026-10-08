@@ -16,13 +16,13 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             </div>
             <nav className="hidden md:flex items-center gap-6">
               <Link href="#demo" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                {t('demo')}
+                {t('nav.demo')}
               </Link>
               <Link href="#features" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                {t('features')}
+                {t('nav.features')}
               </Link>
               <Link href="#stack" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                {t('stack')}
+                {t('nav.stack')}
               </Link>
             </nav>
           </div>

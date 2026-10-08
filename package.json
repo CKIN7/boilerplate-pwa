@@ -1,20 +1,18 @@
-﻿{
-    "name":  "boilerplate-pwa",
-    "private":  true,
-    "scripts":  {
-                    "format":  "prettier --w rite \"**/*.{ts,tsx,json,md}\"",
-                    "typecheck":  "echo \u0027Root typecheck skipped\u0027"
-                },
-    "devDependencies":  {
-                            "eslint":  "^8.57.0",
-                            "prettier":  "^3.2.5",
-                            "turbo":  "^1.13.0",
-                            "typescript":  "^5.4.0",
-                            "@commitlint/cli":  "^19.0.3",
-                            "@commitlint/config-conventional":  "^19.0.3"
-                        },
-    "packageManager":  "pnpm@9.0.0",
-    "engines":  {
-                    "node":  "\u003e=20.0.0"
-                }
+{
+  "name": "boilerplate-pwa",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "typecheck": "echo 'Root typecheck skipped'"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "turbo": "^1.13.0",
+    "typescript": "^5.4.0"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0"
+  }
 }

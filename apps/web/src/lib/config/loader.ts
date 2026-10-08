@@ -213,6 +213,8 @@ const configs: Record<string, NegocioConfig> = {
   },
 };
 
+configs['demo'] = configs['restaurante-el-sabor'];
+
 export function getNegocioConfig(slug: string): NegocioConfig | null {
   return configs[slug] || null;
 }

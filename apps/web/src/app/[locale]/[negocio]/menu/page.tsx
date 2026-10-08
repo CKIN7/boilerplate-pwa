@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useNegocio } from './NegocioProvider';
+import { getNegocioConfig } from '@/lib/config/loader';
 import { cn, formatCurrency } from '@/lib/utils';
 
 interface PageProps {
@@ -17,14 +17,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${config.branding.nombre} - Menú`,
-    description: `Catálogo de ${config.branding.nombre}`,
+    title: `${config.branding.nombre} - MenÃº`,
+    description: `CatÃ¡logo de ${config.branding.nombre}`,
   };
 }
 
 export default function MenuPage({ params }: PageProps) {
   const t = useTranslations('business');
-  const { config } = useNegocio();
+  const config = getNegocioConfig(params.negocio)!;
   const { branding, modulos, textos } = config;
   const currentTextos = textos[params.locale as 'es' | 'en'] || textos.es;
 
@@ -101,7 +101,7 @@ export default function MenuPage({ params }: PageProps) {
               <div className="aspect-[4/3] bg-gradient-to-br from-primary-100 dark:from-primary-900/30 to-secondary-100 dark:to-secondary-900/30 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="text-4xl opacity-50">
-                    {item.category === 'principales' ? '🍽️' : item.category === 'entradas' ? '🥗' : '🍰'}
+                    {item.category === 'principales' ? 'ðŸ½ï¸' : item.category === 'entradas' ? 'ðŸ¥—' : 'ðŸ°'}
                   </span>
                 </div>
               </div>

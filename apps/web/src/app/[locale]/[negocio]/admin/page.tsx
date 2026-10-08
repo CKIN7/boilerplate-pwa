@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useNegocio } from './NegocioProvider';
+import { getNegocioConfig } from '@/lib/config/loader';
 import { cn } from '@/lib/utils';
 
 interface PageProps {
@@ -18,27 +18,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `Admin - ${config.branding.nombre}`,
-    description: `Panel de administración de ${config.branding.nombre}`,
+    description: `Panel de administraciÃ³n de ${config.branding.nombre}`,
   };
 }
 
 export default function AdminPage({ params }: PageProps) {
   const t = useTranslations('admin');
-  const { config, primaryColor } = useNegocio();
+  const config = getNegocioConfig(params.negocio)!;
+  const primaryColor = config.branding.colorPrimario;
   const { branding, modulos } = config;
 
   const stats = [
-    { label: t('stats.bookingsToday'), value: '12', icon: '📅', color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' },
-    { label: t('stats.totalBookings'), value: '1,234', icon: '📊', color: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' },
-    { label: t('stats.totalClients'), value: '567', icon: '👥', color: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' },
-    { label: t('stats.revenue'), value: '$45,670', icon: '💰', color: 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400' },
+    { label: t('stats.bookingsToday'), value: '12', icon: 'ðŸ“…', color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' },
+    { label: t('stats.totalBookings'), value: '1,234', icon: 'ðŸ“Š', color: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' },
+    { label: t('stats.totalClients'), value: '567', icon: 'ðŸ‘¥', color: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' },
+    { label: t('stats.revenue'), value: '$45,670', icon: 'ðŸ’°', color: 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400' },
   ];
 
   const recentBookings = [
-    { id: '1', cliente: 'Juan Pérez', servicio: 'Corte + barba', fecha: '2024-01-20 10:00', estado: 'confirmada' },
-    { id: '2', cliente: 'María García', servicio: 'Corte de cabello', fecha: '2024-01-20 11:00', estado: 'pendiente' },
-    { id: '3', cliente: 'Carlos López', servicio: 'Arreglo de barba', fecha: '2024-01-20 14:00', estado: 'confirmada' },
-    { id: '4', cliente: 'Ana Martínez', servicio: 'Corte de cabello', fecha: '2024-01-19 16:00', estado: 'completada' },
+    { id: '1', cliente: 'Juan PÃ©rez', servicio: 'Corte + barba', fecha: '2024-01-20 10:00', estado: 'confirmada' },
+    { id: '2', cliente: 'MarÃ­a GarcÃ­a', servicio: 'Corte de cabello', fecha: '2024-01-20 11:00', estado: 'pendiente' },
+    { id: '3', cliente: 'Carlos LÃ³pez', servicio: 'Arreglo de barba', fecha: '2024-01-20 14:00', estado: 'confirmada' },
+    { id: '4', cliente: 'Ana MartÃ­nez', servicio: 'Corte de cabello', fecha: '2024-01-19 16:00', estado: 'completada' },
     { id: '5', cliente: 'Pedro Ruiz', servicio: 'Corte + barba', fecha: '2024-01-19 10:00', estado: 'cancelada' },
   ];
 
