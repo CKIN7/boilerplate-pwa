@@ -1,13 +1,14 @@
 {
   "extends": "@boilerplate/tsconfig/node.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "outDir": "dist",
-    "rootDir": "src",
     "paths": {
       "@boilerplate/db": ["../../packages/db/src"],
+      "@boilerplate/db/*": ["../../packages/db/src/*"],
       "@boilerplate/config": ["../../packages/config/src"],
-      "@boilerplate/utils": ["../../packages/utils/src"]
+      "@boilerplate/config/*": ["../../packages/config/src/*"],
+      "@boilerplate/utils": ["../../packages/utils/src"],
+      "@boilerplate/utils/*": ["../../packages/utils/src/*"]
     }
   },
   "include": ["src/**/*"],
