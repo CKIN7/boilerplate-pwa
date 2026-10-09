@@ -34,10 +34,14 @@ router.post('/stripe', asyncHandler(async (req, res) => {
 }));
 
 router.post('/mercadopago', asyncHandler(async (req, res) => {
-  const signature = req.headers['x-signature'] as string;
-  const payload = JSON.stringify(req.body);
+  const signature = req.headers['x-signature'] as string | undefined;
+  const requestId = req.headers['x-request-id'] as string | undefined;
   
-  if (signature && !verifyMercadoPagoWebhook(payload, signature)) {
+  if (!signature || !verifyMercadoPagoWebhook({
+    dataId: String(req.body?.data?.id ?? ''),
+    requestId,
+    signature,
+  })) {
     return res.status(403).json({ error: 'Invalid signature' });
   }
 

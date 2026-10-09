@@ -10,6 +10,7 @@ export const notificaciones = pgTable('notificaciones', {
   canal: varchar('canal', { length: 20 }).notNull(),
   estado: varchar('estado', { length: 20 }).default('pendiente'),
   payload: jsonb('payload'),
+  programadaPara: timestamp('programada_para'),
   enviadoAt: timestamp('enviado_at'),
   createdAt: timestamp('created_at').defaultNow(),
 });

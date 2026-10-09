@@ -1,6 +1,6 @@
 import { db } from '@boilerplate/db';
 import { notificaciones, reservas, clientes, items, negocios } from '@boilerplate/db/schema';
-import { eq, and, desc, gte, lt } from 'drizzle-orm';
+import { eq, and, desc, gte, lt, or } from 'drizzle-orm';
 import { sql } from 'drizzle-orm';
 import { sendEmail, getBookingConfirmationTemplate, getBookingReminderTemplate, getCancellationTemplate } from '../utils/email';
 import { sendWhatsAppTemplate } from '../utils/whatsapp';
@@ -25,6 +25,7 @@ export class NotificationService {
       canal: payload.canal,
       estado: 'pendiente',
       payload: payload.datos || {},
+      programadaPara: payload.programadaPara ?? null,
       enviadoAt: null,
     }).returning();
 
@@ -207,6 +208,7 @@ export class NotificationService {
       },
       negocio: {
         configJson: negocios.configJson,
+        nombre: negocios.nombre,
       },
     })
       .from(reservas)
@@ -256,33 +258,5 @@ export class NotificationService {
         });
       }
     }
-  }
-
-  static async enqueue(payload: {
-    tipo: 'confirmacion' | 'recordatorio' | 'cancelacion' | 'nueva_reserva' | 'personalizada';
-    reservaId: string;
-    negocioId: string;
-    clienteId?: string;
-    canal: 'email' | 'whatsapp' | 'push';
-    prioridad?: 'alta' | 'normal' | 'baja';
-    datos?: Record<string, any>;
-    programadaPara?: Date;
-  }) {
-    const [notification] = await db.insert(notificaciones).values({
-      negocioId: payload.negocioId,
-      reservaId: payload.reservaId,
-      tipo: payload.tipo,
-      canal: payload.canal,
-      estado: 'pendiente',
-      payload: payload.datos || {},
-      enviadoAt: null,
-    }).returning();
-
-    if (payload.programadaPara && payload.programadaPara > new Date()) {
-      return notification;
-    }
-
-    await this.process(notification.id);
-    return notification;
   }
 }

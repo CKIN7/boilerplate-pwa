@@ -27,7 +27,7 @@ const createTemplateSchema = z.object({
     }).optional(),
     buttons: z.array(z.object({
       type: z.enum(['QUICK_REPLY', 'URL', 'PHONE_NUMBER']),
-      text: z.string().max(20).optional(),
+      text: z.string().max(20),
       url: z.string().url().optional(),
       phone_number: z.string().optional(),
     })).optional(),
@@ -67,7 +67,7 @@ router.post('/webhook', asyncHandler(async (req, res) => {
   const signature = req.headers['x-hub-signature-256'] as string;
   const payload = JSON.stringify(req.body);
   
-  if (signature && !verifyWebhookSignature(payload, signature)) {
+  if (!signature || !verifyWebhookSignature(payload, signature)) {
     return res.sendStatus(403);
   }
   

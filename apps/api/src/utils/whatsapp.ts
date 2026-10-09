@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { createHmac, timingSafeEqual } from 'crypto';
 import { config } from '../config';
 
 const META_API_VERSION = 'v18.0';
@@ -122,15 +123,12 @@ export async function deleteWhatsAppTemplate(name: string) {
 export function verifyWebhookSignature(payload: string, signature: string): boolean {
   const { appSecret } = config.whatsapp;
   if (!appSecret) return false;
-  
-  const crypto = await import('crypto');
-  const expectedSignature = crypto
-    .createHmac('sha256', appSecret)
+
+  const expectedSignature = `sha256=${createHmac('sha256', appSecret)
     .update(payload)
-    .digest('hex');
-  
-  return crypto.timingSafeEqual(
-    Buffer.from(signature.replace('sha256=', '')),
-    Buffer.from(expectedSignature)
-  );
+    .digest('hex')}`;
+
+  const received = Buffer.from(signature);
+  const expected = Buffer.from(expectedSignature);
+  return received.length === expected.length && timingSafeEqual(received, expected);
 }
