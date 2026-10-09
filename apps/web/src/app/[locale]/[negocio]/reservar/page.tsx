@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
-import { useNegocio } from './NegocioProvider';
+import { getNegocioConfig } from '@/lib/config/loader';
 import { cn } from '@/lib/utils';
 
 interface PageProps {
@@ -23,7 +23,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function ReservarPage({ params }: PageProps) {
   const t = useTranslations('booking');
-  const { config, primaryColor } = useNegocio();
+  const config = getNegocioConfig(params.negocio)!;
+  const primaryColor = config.branding.colorPrimario;
   const { branding, modulos, textos } = config;
   const currentTextos = textos[params.locale as 'es' | 'en'] || textos.es;
 

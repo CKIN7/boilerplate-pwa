@@ -2,19 +2,14 @@
   "name": "boilerplate-pwa",
   "private": true,
   "scripts": {
-    "format": "prettier --w rite \"**/*.{ts,tsx,json,md}\"",
-    "prepare": "husky install",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "typecheck": "echo 'Root typecheck skipped'"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "turbo": "^1.13.0",
-    "typescript": "^5.4.0",
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3"
+    "typescript": "^5.4.0"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {

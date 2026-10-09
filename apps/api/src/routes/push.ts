@@ -42,7 +42,7 @@ const notifyReservationSchema = z.object({
 router.get('/vapid-key', requireAuth, requireTenant, asyncHandler(async (_req, res) => {
   const publicKey = getVapidPublicKey();
   res.json({ publicKey });
-});
+}));
 
 router.post('/subscribe', requireAuth, requireTenant, asyncHandler(async (req, res) => {
   const data = subscribeSchema.parse(req.body);

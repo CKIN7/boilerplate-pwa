@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useNegocio } from './NegocioProvider';
+import { getNegocioConfig } from '@/lib/config/loader';
 import { cn } from '@/lib/utils';
 
 interface PageProps {
@@ -18,17 +18,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `Mi cuenta - ${config.branding.nombre}`,
-    description: `Área de cliente de ${config.branding.nombre}`,
+    description: `Ãrea de cliente de ${config.branding.nombre}`,
   };
 }
 
 export default function CuentaPage({ params }: PageProps) {
   const t = useTranslations('account');
-  const { config, primaryColor } = useNegocio();
+  const config = getNegocioConfig(params.negocio)!;
+  const primaryColor = config.branding.colorPrimario;
   const { branding, modulos } = config;
 
   const mockUser = {
-    nombre: 'Juan Pérez',
+    nombre: 'Juan PÃ©rez',
     email: 'juan@email.com',
     telefono: '+58 424 123 4567',
     reservas: [

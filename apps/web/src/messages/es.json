@@ -1,8 +1,10 @@
 {
   "landing": {
-    "demo": "Demo",
-    "features": "Características",
-    "stack": "Stack",
+    "nav": {
+      "demo": "Demo",
+      "features": "Características",
+      "stack": "Stack"
+    },
     "hero": {
       "title": "Una base de código. Múltiples negocios.",
       "subtitle": "Boilerplate PWA multi-rubro: configuración, no reescritura. Lanza apps para restaurantes, clínicas, barberías, gimnasios y tiendas en días, no meses.",
@@ -82,6 +84,11 @@
     },
     "footer": {
       "rights": "Todos los derechos reservados."
+    },
+    "menu": {
+      "addToCart": "Agregar al carrito",
+      "reserve": "Reservar",
+      "empty": "No hay productos disponibles"
     }
   },
   "booking": {
