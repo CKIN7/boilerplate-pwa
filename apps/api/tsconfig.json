@@ -2,6 +2,8 @@
   "extends": "@boilerplate/tsconfig/node.json",
   "compilerOptions": {
     "outDir": "dist",
+    "declaration": false,
+    "declarationMap": false,
     "paths": {
       "@boilerplate/db": ["../../packages/db/src"],
       "@boilerplate/db/*": ["../../packages/db/src/*"],

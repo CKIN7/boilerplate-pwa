@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
@@ -168,7 +168,7 @@ export function DemoSelector({ locale }: { locale: string }) {
             </div>
           </div>
 
-          <div className="relative" style={{ '--primary': selectedBusiness.colorPrimario, '--secondary': selectedBusiness.colorSecundario }}>
+          <div className="relative" style={{ '--primary': selectedBusiness.colorPrimario, '--secondary': selectedBusiness.colorSecundario } as CSSProperties}>
             <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-primary-100 dark:from-primary-900/30 to-secondary-100 dark:to-secondary-900/30 border border-gray-200 dark:border-gray-800">
               <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center">
                 <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-4xl mb-6">

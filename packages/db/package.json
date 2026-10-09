@@ -5,10 +5,10 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:push": "drizzle-kit push:pg",
     "db:studio": "drizzle-kit studio",
-    "db:migrate": "drizzle-kit migrate",
+    "db:migrate": "drizzle-kit up:pg",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

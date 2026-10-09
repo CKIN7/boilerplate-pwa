@@ -2,7 +2,7 @@
   "extends": "@boilerplate/tsconfig/nextjs.json",
   "compilerOptions": {
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["./src/*"],
       "@boilerplate/ui": ["../../packages/ui/src"],
       "@boilerplate/config": ["../../packages/config/src"],
       "@boilerplate/db": ["../../packages/db/src"],

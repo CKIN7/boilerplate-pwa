@@ -17,10 +17,10 @@
     "incremental": true,
     "plugins": [{ "name": "next" }],
     "paths": {
-      "@boilerplate/ui": ["packages/ui/src"],
-      "@boilerplate/config": ["packages/config/src"],
-      "@boilerplate/db": ["packages/db/src"],
-      "@boilerplate/utils": ["packages/utils/src"]
+      "@boilerplate/ui": ["../ui/src"],
+      "@boilerplate/config": ["../config/src"],
+      "@boilerplate/db": ["../db/src"],
+      "@boilerplate/utils": ["../utils/src"]
     }
   },
   "exclude": ["node_modules", "dist", "build", ".next", ".turbo"]
