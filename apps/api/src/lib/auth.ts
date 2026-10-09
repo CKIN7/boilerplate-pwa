@@ -1,4 +1,5 @@
 import { betterAuth } from 'better-auth';
+import { bearer } from 'better-auth/plugins';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from '@boilerplate/db';
 import { usuarios, sessions, accounts, verifications } from '@boilerplate/db/schema';
@@ -21,10 +22,15 @@ export const auth = betterAuth({
     expiresIn: 60 * 60 * 24 * 7,
     updateAge: 60 * 60 * 24,
   },
+  advanced: {
+    database: {
+      generateId: 'uuid',
+    },
+  },
   user: {
     fields: {
-      name: { fieldName: 'nombre' },
-      image: { fieldName: 'avatar' },
+      name: 'nombre',
+      image: 'avatar',
     },
     additionalFields: {
       negocioId: {
@@ -40,7 +46,7 @@ export const auth = betterAuth({
       },
     },
   },
-  plugins: [],
+  plugins: [bearer()],
 });
 
 export type Session = typeof auth.$Infer.Session;

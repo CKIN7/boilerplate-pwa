@@ -401,9 +401,9 @@ router.get('/:id/pdf', requireTenant, asyncHandler(async (req, res) => {
       service: reserva.item?.nombre || 'Servicio',
       clientName: reserva.cliente?.nombre || 'Cliente',
       clientPhone: reserva.cliente?.telefono || '',
-      clientEmail: reserva.cliente?.email,
-      notes: reserva.notas,
-      estado: reserva.estado,
+      clientEmail: reserva.cliente?.email ?? undefined,
+      notes: reserva.notas ?? undefined,
+      status: reserva.estado || '',
     },
   });
 
