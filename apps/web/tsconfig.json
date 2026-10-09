@@ -1,7 +1,6 @@
 {
   "extends": "@boilerplate/tsconfig/nextjs.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
       "@boilerplate/ui": ["../../packages/ui/src"],

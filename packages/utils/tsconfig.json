@@ -1,7 +1,6 @@
 {
   "extends": "@boilerplate/tsconfig/react-library.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "outDir": "dist",
     "rootDir": "src"
   },
