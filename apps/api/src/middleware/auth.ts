@@ -25,7 +25,7 @@ export async function requireAuth(req: AuthenticatedRequest, _res: Response, nex
 
   const token = authHeader.split(' ')[1];
   const session = await auth.api.getSession({
-    headers: { authorization: `Bearer ${token}` },
+    headers: new Headers({ authorization: `Bearer ${token}` }),
   });
 
   if (!session) {

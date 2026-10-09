@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { eq, and, desc, gte, lte, count, sql, sum } from 'drizzle-orm';
+import { eq, and, desc, gte, lte, lt, or, count, sql, sum, inArray } from 'drizzle-orm';
 import { asyncHandler, AppError } from '../middleware/errorHandler';
 import { requireAuth, requireTenant } from '../middleware/auth';
 import { db } from '@boilerplate/db';
@@ -52,7 +52,7 @@ router.get('/stats', requireAuth, requireTenant, asyncHandler(async (req, res) =
       totalReservas: totalReservas[0].count,
       totalClientes: totalClientes[0].count,
       ingresos: ingresos[0].total || 0,
-      reservasPorEstado: reservasPorEstado.reduce((acc, r) => ({ ...acc, [r.estado]: r.count }), {}),
+      reservasPorEstado: reservasPorEstado.reduce((acc, r) => ({ ...acc, [r.estado ?? '']: r.count }), {}),
     },
   });
 }));
@@ -106,7 +106,7 @@ router.get('/reservas/export', requireAuth, requireTenant, asyncHandler(async (r
     r.precio || 0,
     r.notas || '',
     r.origen || '',
-    r.creado.toISOString(),
+    r.creado?.toISOString() || '',
   ]);
 
   const csv = [headers.join(','), ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))].join('\n');
@@ -144,7 +144,7 @@ router.get('/clientes/export', requireAuth, requireTenant, asyncHandler(async (r
     r.email || '',
     r.notas || '',
     r.totalReservas,
-    r.creado.toISOString(),
+    r.creado?.toISOString() || '',
   ]);
 
   const csv = [headers.join(','), ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))].join('\n');
@@ -172,7 +172,7 @@ router.post('/reservas/bulk', requireAuth, requireTenant, asyncHandler(async (re
 
   const result = await db.update(reservas)
     .set({ estado: estadoMap[action] as any, updatedAt: new Date() })
-    .where(and(eq(reservas.negocioId, negocioId), sql`${reservas.id} IN (${ids.map(() => '?').join(',')})`))
+    .where(and(eq(reservas.negocioId, negocioId), inArray(reservas.id, ids)))
     .returning({ id: reservas.id });
 
   res.json({ updated: result.length, ids: result.map(r => r.id) });
