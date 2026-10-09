@@ -4,7 +4,7 @@ import { eq, and, desc, or, ilike } from 'drizzle-orm';
 import { asyncHandler, AppError } from '../middleware/errorHandler';
 import { requireAuth, requireTenant } from '../middleware/auth';
 import { db } from '@boilerplate/db';
-import { clientes, reservas } from '@boilerplate/db/schema';
+import { clientes, reservas, negocios } from '@boilerplate/db/schema';
 import { sendEmail, getBookingConfirmationTemplate } from '../utils/email';
 
 const router = Router();
@@ -32,13 +32,12 @@ router.get('/', requireAuth, requireTenant, asyncHandler(async (req, res) => {
   const conditions = [eq(clientes.negocioId, negocioId)];
 
   if (search) {
-    conditions.push(
-      or(
-        ilike(clientes.nombre, `%${search}%`),
-        ilike(clientes.email, `%${search}%`),
-        ilike(clientes.telefono, `%${search}%`)
-      )
+    const searchCondition = or(
+      ilike(clientes.nombre, `%${search}%`),
+      ilike(clientes.email, `%${search}%`),
+      ilike(clientes.telefono, `%${search}%`)
     );
+    if (searchCondition) conditions.push(searchCondition);
   }
 
   const data = await db.select({
@@ -161,8 +160,8 @@ router.post('/:id/booking-confirmation', requireAuth, requireTenant, asyncHandle
   if (!cliente) throw new AppError(404, 'Cliente no encontrado');
   if (!cliente.email) throw new AppError(400, 'Cliente no tiene email');
 
-  const [negocio] = await db.select().from(await import('@boilerplate/db/schema').then(m => m.negocios))
-    .where(eq(await import('@boilerplate/db/schema').then(m => m.negocios).id, negocioId));
+  const [negocio] = await db.select().from(negocios)
+    .where(eq(negocios.id, negocioId));
 
   const config = negocio?.configJson as any;
 

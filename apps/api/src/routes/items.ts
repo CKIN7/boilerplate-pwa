@@ -65,7 +65,7 @@ router.get('/:id/pdf', requireTenant, asyncHandler(async (req, res) => {
     items: [
       {
         name: item.nombre,
-        description: item.descripcion,
+        description: item.descripcion || '',
         quantity: 1,
         unitPrice: item.precio,
         total: item.precio,
@@ -74,7 +74,7 @@ router.get('/:id/pdf', requireTenant, asyncHandler(async (req, res) => {
     subtotal: item.precio,
     tax: 0,
     total: item.precio,
-    notes: item.descripcion,
+    notes: item.descripcion || '',
     footerText: `${config.branding?.nombre || negocio.nombre} - Generado automáticamente`,
   };
 
