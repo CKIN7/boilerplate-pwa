@@ -3,7 +3,7 @@ import { z } from 'zod';
 import multer from 'multer';
 import { asyncHandler, AppError } from '../middleware/errorHandler';
 import { requireAuth, requireTenant } from '../middleware/auth';
-import { uploadBuffer, generateSignedUploadParams, UploadResult } from '../utils/cloudinary';
+import { uploadBuffer, uploadBase64, deleteByPublicId, getOptimizedUrl, generateSignedUploadParams, UploadResult } from '../utils/cloudinary';
 
 const router = Router();
 

@@ -367,6 +367,7 @@ router.get('/:id/pdf', requireTenant, asyncHandler(async (req, res) => {
     fechaInicio: reservas.fechaInicio,
     fechaFin: reservas.fechaFin,
     estado: reservas.estado,
+    notas: reservas.notas,
     cliente: {
       id: clientes.id,
       nombre: clientes.nombre,
@@ -388,7 +389,7 @@ router.get('/:id/pdf', requireTenant, asyncHandler(async (req, res) => {
   const [negocio] = await db.select().from(negocios).where(eq(negocios.id, negocioId));
   const config = negocio?.configJson as any;
 
-  const { generateReservationPDF } = await import('../utils/pdf');
+  const { generateReservationPDF } = await import('../utils/pdf.js');
 
   const pdfBuffer = await generateReservationPDF({
     businessName: config?.branding?.nombre || negocio?.nombre || 'Negocio',

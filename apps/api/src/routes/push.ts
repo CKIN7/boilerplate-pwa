@@ -4,7 +4,7 @@ import { asyncHandler, AppError } from '../middleware/errorHandler';
 import { requireAuth, requireTenant } from '../middleware/auth';
 import { db } from '@boilerplate/db';
 import { pushSubscriptions, usuarios } from '@boilerplate/db/schema';
-import { eq, and } from 'drizzle-orm';
+import { eq, and, inArray } from 'drizzle-orm';
 import { sendPushNotification, getVapidPublicKey, createBookingPayload, createReminderPayload, createCancellationPayload } from '../utils/webpush';
 
 const router = Router();
@@ -46,7 +46,7 @@ router.get('/vapid-key', requireAuth, requireTenant, asyncHandler(async (_req, r
 
 router.post('/subscribe', requireAuth, requireTenant, asyncHandler(async (req, res) => {
   const data = subscribeSchema.parse(req.body);
-  const userId = req.user!.userId;
+  const userId = req.user!.id;
   const negocioId = req.negocioId!;
 
   await db.insert(pushSubscriptions).values({
@@ -68,7 +68,7 @@ router.post('/subscribe', requireAuth, requireTenant, asyncHandler(async (req, r
 }));
 
 router.delete('/subscribe', requireAuth, requireTenant, asyncHandler(async (req, res) => {
-  const userId = req.user!.userId;
+  const userId = req.user!.id;
   const { endpoint } = req.body;
 
   if (!endpoint) throw new AppError(400, 'Endpoint requerido');
@@ -80,7 +80,7 @@ router.delete('/subscribe', requireAuth, requireTenant, asyncHandler(async (req,
 }));
 
 router.get('/subscriptions', requireAuth, requireTenant, asyncHandler(async (req, res) => {
-  const userId = req.user!.userId;
+  const userId = req.user!.id;
 
   const subscriptions = await db.select()
     .from(pushSubscriptions)
@@ -91,11 +91,9 @@ router.get('/subscriptions', requireAuth, requireTenant, asyncHandler(async (req
 
 router.post('/send', requireAuth, requireTenant, asyncHandler(async (req, res) => {
   const data = sendSchema.parse(req.body);
-  const { sendPushNotification } = await import('../utils/webpush');
-
   const subscriptions = await db.select()
     .from(pushSubscriptions)
-    .where(sql`${pushSubscriptions.userId} IN (${data.userIds.map(() => '?').join(',')})`);
+    .where(inArray(pushSubscriptions.userId, data.userIds));
 
   const payload = {
     title: data.title,
@@ -123,11 +121,9 @@ router.post('/send', requireAuth, requireTenant, asyncHandler(async (req, res) =
 
 router.post('/notify-reservation', requireAuth, requireTenant, asyncHandler(async (req, res) => {
   const data = notifyReservationSchema.parse(req.body);
-  const { sendPushNotification } = await import('../utils/webpush');
-
   const subscriptions = await db.select()
     .from(pushSubscriptions)
-    .where(sql`${pushSubscriptions.userId} IN (${data.userIds.map(() => '?').join(',')})`);
+    .where(inArray(pushSubscriptions.userId, data.userIds));
 
   let payload: any;
   switch (data.type) {

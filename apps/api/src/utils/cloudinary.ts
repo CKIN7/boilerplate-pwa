@@ -113,12 +113,11 @@ export async function generateSignedUploadParams(folder = 'boilerplate', publicI
   const signature = cloudinary.utils.api_sign_request(paramsToSign, config.cloudinary.apiSecret);
 
   return {
+    ...paramsToSign,
     signature,
-    timestamp,
     apiKey: config.cloudinary.apiKey,
     cloudName: config.cloudinary.cloudName,
     folder,
     publicId,
-    ...paramsToSign,
   };
 }
