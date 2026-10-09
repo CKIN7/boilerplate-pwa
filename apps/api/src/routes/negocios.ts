@@ -87,13 +87,10 @@ router.post('/', requireAuth, requireOwner, asyncHandler(async (req, res) => {
 
   const [negocio] = await db.insert(negocios).values(data).returning();
 
-  const ownerData = {
-    email: req.user!.email,
-    nombre: req.user!.nombre,
-    rol: 'owner' as const,
-    negocioId: negocio.id,
-  };
-  await db.insert(usuarios).values(ownerData);
+  // El usuario logueado ya existe (email unique): se reasigna al nuevo negocio en lugar de duplicarlo
+  await db.update(usuarios)
+    .set({ negocioId: negocio.id, rol: 'owner', updatedAt: new Date() })
+    .where(eq(usuarios.id, req.user!.id));
 
   res.status(201).json({ data: negocio });
 }));
